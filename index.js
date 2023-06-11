@@ -101,3 +101,13 @@ async function openModal(id){
  btnClose.addEventListener("click",() => closeModal())
 }
 
+function closeModal(){
+    modalEl.classList.remove("modal--show");
+}
+
+window.addEventListener("click", (e) => {
+
+    if(e.target === modalEl){
+        closeModal();
+    }
+})
