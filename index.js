@@ -111,3 +111,9 @@ window.addEventListener("click", (e) => {
         closeModal();
     }
 })
+
+window.addEventListener("keydown" , (e) => {
+    if(e.keyCode === 27){
+        modalEl.classList.remove("modal--show");
+    }
+})
