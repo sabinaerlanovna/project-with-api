@@ -161,9 +161,12 @@ body{
 }
 
 .modal_button-close {
-    padding: 5px;
+    padding: 15px;
     margin: 10px;
     align-self: center;
+    color: white;
+    background-color: black;
+    
 }
 
 .modal_movie-site {
