@@ -65,3 +65,39 @@ form.addEventListener('submit' , (e) =>{
     }
 })
 
+//Modal
+const modalEl = document.querySelector('.modal');
+
+
+async function openModal(id){
+    const resp = await fetch(API_URL_MOVIE_DETAILS + id, {
+       headers :{
+        "Content-Type":"application/json" , 
+        "X-API-KEY": API_KEY,
+        },
+    });
+    const respData = await resp.json();
+
+    modalEl.classList.add("modal--show")
+
+    modalEl.innerHTML = `
+<div class="modal_card">
+<img class="modal_movie-backdrop" src="${respData.posterUrl}" alt "">
+<h2>
+<span class="modal_movie-title">Название - ${respData.nameRu}</span>
+<span class="modal_movie-release-year">Год - ${respData.year}</span>
+</h2>
+<ul class="modal_movie-info">
+<div class="loader"></div>
+<li class="modal_movie-genre">Жанр - ${respData.genres.map((el) => `<span>${el.genre}</span>`)}</li>
+ ${respData.filmLength ? `<li class="modal_movie-runtime">Время - ${respData.filmLength} минут</li>` : ''}
+<li>Сайт:<a class=modal_movie-site" href="${respData.webUrl}">${respData.webUrl}</a></li>
+<li class="modal_movie-overview">Описание - ${respData.description}</li>
+</ul>
+<button type="button" class="modal_button-close">Закрыть</button>
+</div>
+`
+ const btnClose = document.querySelector(".modal_button-close")
+ btnClose.addEventListener("click",() => closeModal())
+}
+
